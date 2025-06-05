@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config(); // This line reads your .env file and loads the variables into process.env
 
 // Configure Cloudinary with environment variables
@@ -19,9 +19,10 @@ const uploadOnCloudinary = async (localFilePath) => {
       resource_type: "auto",
     });
 
-    console.log("file is uploaded on cloudinary", response.url); // Log upload success
-    return response; // Return Cloudinary response object
+    //console.log("file is uploaded on cloudinary", response.url); // Log upload success
 
+    fs.unlinkSync(localFilePath);
+    return response; // Return Cloudinary response object
   } catch (error) {
     fs.unlinkSync(localFilePath); // Delete local file if upload fails
     return null; // Return null on failure
