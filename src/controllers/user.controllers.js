@@ -15,10 +15,12 @@ const registerUser = asyncHandler(async (req, res) => {
   // check  for user creation
   // return response
 
-  const { fullname, email, username, password } = req.body;
-  console.log(fullname, email, username);
+  const { fullName, email, username, password } = req.body;
+
+  // console.log(fullName, email, username);
+
   if (
-    [username, email, fullname, password].some((field) => field?.trim() === "")
+    [username, email, fullName, password].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All fileds are required");
   }
@@ -43,6 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
     coverImagePath = req.files.coverImage[0].path;
   }
 
+
   if (!avatarPath) {
     throw new ApiError(400, "avatar is required");
   }
@@ -55,7 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
-    fullname,
+    fullName,
     avatar: avatar.url,
     coverImage: coverImage?.url || "",
     email,
