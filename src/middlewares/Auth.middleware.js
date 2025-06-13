@@ -2,7 +2,6 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.models.js";
-import { use } from "react";
 
 //  if the res is not used we should put _ instade of res production gread code progress
 
